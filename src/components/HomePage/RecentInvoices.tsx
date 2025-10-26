@@ -15,10 +15,7 @@ const RecentInvoices = () => {
           className="bg-[#0B132B] text-xs sm:text-lg rounded-md p-2 cursor-pointer"
           key={`${invoice.clientName}${i}`}
         >
-          <Link
-            to={`/invoices/${invoice.invoiceNumber}`}
-            key={`${invoice.clientName}${i}`}
-          >
+          <Link to={`/invoices/${invoice.invoiceNumber}`}>
             <header>
               <ul className="flex flex-row justify-between sm:py-2 sm:px-5 px-2">
                 <li className="text-[#8EC78C]">

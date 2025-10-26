@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import { months, sortInvoices } from "./utils";
+import { motion } from "motion/react";
 
 const History = () => {
   const [invoices] = useState(() => {
@@ -47,13 +48,21 @@ const History = () => {
   });
 
   return (
-    <div className="bg-[#1C2541] rounded-2xl  flex flex-col gap-2 text-white sm:mx-60 sm:my-10 sm:py-5 sm:px-40 py-10 mx-3 p-4">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      id={"history"}
+      transition={{ duration: 0.4, ease: "easeIn" }}
+      className="bg-[#1C2541] rounded-2xl  flex flex-col gap-2 text-white sm:mx-60 sm:my-10 sm:py-5 sm:px-40 py-10 mx-3 p-4"
+    >
+      {" "}
       <p className="text-gray-300 sm:text-lg text-sm text-center">
         Browse your complete invoices organized by date. Click on any invoice to
         view details, download.
       </p>
       {invoiceList}
-    </div>
+    </motion.div>
   );
 };
 

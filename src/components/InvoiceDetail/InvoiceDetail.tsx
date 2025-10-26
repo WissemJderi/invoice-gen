@@ -1,4 +1,5 @@
 import { useParams } from "react-router";
+import { motion } from "motion/react";
 const invoices = JSON.parse(localStorage.getItem("invoices") || "[]");
 
 const InvoiceDetail = () => {
@@ -11,7 +12,14 @@ const InvoiceDetail = () => {
   }
   const textStyle = "text-lg text-sm sm:text-lg";
   return (
-    <div className="bg-[#1C2541] sm:mx-60 sm:my-10 sm:py-5 sm:px-40 py-10 px-5 rounded-2xl text-white mx-3 flex flex-col gap-2">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      id={"invoiceDetail"}
+      transition={{ duration: 0.4, ease: "easeIn" }}
+      className="bg-[#1C2541] sm:mx-60 sm:my-10 sm:py-5 sm:px-40 py-10 px-5 rounded-2xl text-white mx-3 flex flex-col gap-2"
+    >
       <h1>Invoice: 00{invoice.invoiceNumber}</h1>
       <p className={textStyle}>
         <strong>Date:</strong> {invoice.date}
@@ -43,7 +51,7 @@ const InvoiceDetail = () => {
         <strong>Total: </strong>
         {invoice.total} DT
       </p>
-    </div>
+    </motion.div>
   );
 };
 

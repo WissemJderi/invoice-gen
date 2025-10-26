@@ -2,6 +2,10 @@ import { PDFDownloadLink, PDFViewer, StyleSheet } from "@react-pdf/renderer";
 
 import { InvoicePDF } from "./PDF";
 
+import { Buffer } from "buffer";
+
+globalThis.Buffer = Buffer;
+
 interface InvoiceFormProps {
   invoiceData: Record<string, string | number>;
 }

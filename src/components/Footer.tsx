@@ -1,9 +1,20 @@
-import { CgWebsite } from "react-icons/cg";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
+import { links } from "./data/footerLinks";
 
 const Footer = () => {
   const iconsStyle = "cursor-pointer";
+  const linksList = links.map((link) => {
+    return (
+      <a
+        href={link.href} // try it without
+        target="_blank"
+        rel="noopener noreferrer"
+        className={iconsStyle}
+        key={link.href}
+      >
+        {link.icon}
+      </a>
+    );
+  });
   const currentYear = new Date().getFullYear();
   return (
     <div className="mx-3 my-10 sm:mx-90 sm:mt-20 border-t-2 border-black/40 p-2">
@@ -19,38 +30,7 @@ const Footer = () => {
         <p>© {currentYear} Wissem Jderi</p>
       </div>
       <div className="flex flex-row items-center justify-center gap-3 mt-2 text-white">
-        <a
-          href="https://wissemjderi.vercel.app/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={iconsStyle}
-        >
-          <CgWebsite />
-        </a>
-        <a
-          href="https://github.com/WissemJderi"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={iconsStyle}
-        >
-          <FaGithub />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/wissem-jderi-a15765386/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={iconsStyle}
-        >
-          <FaLinkedin />
-        </a>
-        <a
-          href="mailto:wissemjderi@outlook.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={iconsStyle}
-        >
-          <MdEmail />
-        </a>
+        {linksList}
       </div>
     </div>
   );

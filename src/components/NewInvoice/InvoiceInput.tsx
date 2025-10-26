@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { inputs } from "./data/inputs";
 import PDFHolder from "../PDFHolder";
-
 const InvoiceInput = () => {
   const [showPDF, setShowPDF] = useState(true);
   const [invoices, setInvoices] = useState(() => {

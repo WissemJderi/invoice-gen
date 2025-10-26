@@ -8,18 +8,21 @@ import NewInvoice from "./components/NewInvoice/NewInvoice.tsx";
 import Navbar from "./components/Navbar.tsx";
 import Footer from "./components/Footer.tsx";
 import InvoiceDetail from "./components/InvoiceDetail/InvoiceDetail.tsx";
+import { AnimatePresence } from "motion/react";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/new-invoice" element={<NewInvoice />} />
-        <Route path="/history" element={<History />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/invoices/:invoiceId" element={<InvoiceDetail />} />
-      </Routes>
+      <AnimatePresence mode="sync">
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/new-invoice" element={<NewInvoice />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/invoices/:invoiceId" element={<InvoiceDetail />} />
+        </Routes>
+      </AnimatePresence>
       <Footer />
     </BrowserRouter>
   </StrictMode>,
