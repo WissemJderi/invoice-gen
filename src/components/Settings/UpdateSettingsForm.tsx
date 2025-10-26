@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { defaultUserInfo } from "../data/defaultUserInfo";
 
 const UpdateSettingsForm = () => {
   const [userInfo, setUserInfo] = useState(() => {
@@ -6,12 +7,7 @@ const UpdateSettingsForm = () => {
     if (userInfoString) {
       return JSON.parse(userInfoString);
     }
-    const defaultInfo = {
-      name: "Your Company Name",
-      address: "Your Street Address",
-      city: "Your City, Country",
-      mf: "Your Tax ID",
-    };
+    const defaultInfo = defaultUserInfo;
     localStorage.setItem("userInfo", JSON.stringify(defaultInfo));
     return defaultInfo;
   });
@@ -45,6 +41,25 @@ const UpdateSettingsForm = () => {
           />
         </div>
         <div className="flex flex-col">
+          <p className="pl-2 font-semibold">Email Address:</p>
+          <input
+            type="email"
+            value={userInfo.email}
+            onChange={(e) => handleChange("email", e.target.value)}
+            className={inputStyle}
+          />
+        </div>
+        <div className="flex flex-col">
+          <p className="pl-2 font-semibold">Phone Number:</p>
+          <input
+            type="number"
+            value={userInfo.phoneNumber}
+            onChange={(e) => handleChange("phoneNumber", e.target.value)}
+            className={inputStyle}
+          />
+        </div>
+
+        <div className="flex flex-col">
           <p className="pl-2 font-semibold">Address:</p>
           <input
             type="text"
@@ -68,6 +83,15 @@ const UpdateSettingsForm = () => {
             type="text"
             value={userInfo.mf}
             onChange={(e) => handleChange("mf", e.target.value)}
+            className={inputStyle}
+          />
+        </div>
+        <div className="flex flex-col">
+          <p className="pl-2 font-semibold">RIB:</p>
+          <input
+            type="text"
+            value={userInfo.rib}
+            onChange={(e) => handleChange("rib", e.target.value)}
             className={inputStyle}
           />
         </div>

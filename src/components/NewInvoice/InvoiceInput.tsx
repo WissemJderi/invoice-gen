@@ -3,7 +3,7 @@ import { inputs } from "./data/inputs";
 import PDFHolder from "../PDFHolder";
 
 const InvoiceInput = () => {
-  const [showPDF, setShowPDF] = useState(false);
+  const [showPDF, setShowPDF] = useState(true);
   const [invoices, setInvoices] = useState(() => {
     const stored = localStorage.getItem("invoices");
     return stored ? JSON.parse(stored) : [];
@@ -136,15 +136,6 @@ const InvoiceInput = () => {
       <p className="text-xl">Invoice Number: {invoiceData.invoiceNumber}</p>
       {inputsList}
       <button
-        onClick={() => {
-          addInvoice(invoiceData);
-          setInvoiceData(initInvoiceData);
-        }}
-        className="bg-[#8EC78C] rounded-md sm:mx-30 sm:mt-10 text-md my-3 mx-6 p-2 cursor-pointer"
-      >
-        Generate
-      </button>
-      <button
         className="bg-[#8EC78C] rounded-md sm:mx-30 sm:my-2 text-md my-3 mx-6 p-2 cursor-pointer"
         onClick={() => {
           setShowPDF((prevState: boolean) => !prevState);
@@ -153,6 +144,15 @@ const InvoiceInput = () => {
         Toggle PDF Preview
       </button>
       {showPDF ? <PDFHolder invoiceData={invoiceData} /> : null}
+      <button
+        onClick={() => {
+          addInvoice(invoiceData);
+          setInvoiceData(initInvoiceData);
+        }}
+        className="bg-[#8EC78C] rounded-md sm:mx-30 sm:mt-10 text-md my-3 mx-6 p-2 cursor-pointer"
+      >
+        Generate
+      </button>
     </div>
   );
 };

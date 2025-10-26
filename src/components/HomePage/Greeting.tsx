@@ -1,15 +1,11 @@
 import { greeting } from "../../utils/greeting";
+import { defaultUserInfo } from "../data/defaultUserInfo";
 
 const Greeting = () => {
   const userInfoString = localStorage.getItem("userInfo");
   const userInfo = userInfoString
     ? JSON.parse(userInfoString)
-    : {
-        name: "John Doe",
-        address: "123 Main Street",
-        city: "Somewhere",
-        mf: "MF1234567",
-      };
+    : defaultUserInfo;
   const currentHour: number = new Date().getHours();
   return (
     <div className="mb-15">

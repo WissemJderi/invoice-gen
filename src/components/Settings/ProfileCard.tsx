@@ -1,15 +1,12 @@
+import { defaultUserInfo } from "../data/defaultUserInfo";
+
 const ProfileCard = () => {
   const userInfoString = localStorage.getItem("userInfo");
   let userInfo;
   if (userInfoString) {
     userInfo = JSON.parse(userInfoString);
   } else {
-    userInfo = {
-      name: "Your Company Name",
-      address: "Your Street Address",
-      city: "Your City, Country",
-      mf: "Your Tax ID",
-    };
+    userInfo = defaultUserInfo;
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
   }
   return (
@@ -20,6 +17,12 @@ const ProfileCard = () => {
           <b>Name:</b> {userInfo.name}
         </p>
         <p>
+          <b>Email Address:</b> {userInfo.email}
+        </p>
+        <p>
+          <b>Phone Number:</b> {userInfo.phoneNumber}
+        </p>
+        <p>
           <b>Address: </b>
           {userInfo.address}
         </p>
@@ -28,6 +31,9 @@ const ProfileCard = () => {
         </p>
         <p>
           <b>MF:</b> {userInfo.mf}
+        </p>
+        <p>
+          <b>RIB:</b> {userInfo.rib}
         </p>
       </section>
     </div>

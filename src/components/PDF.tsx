@@ -7,6 +7,7 @@ import {
   Image,
 } from "@react-pdf/renderer";
 import { Table, TR, TH, TD } from "@ag-media/react-pdf-table";
+import { defaultUserInfo } from "./data/defaultUserInfo";
 
 const styles = StyleSheet.create({
   page: {
@@ -91,29 +92,31 @@ const styles = StyleSheet.create({
 interface InvoiceFormProps {
   invoiceData: Record<string, string | number>;
 }
+const userInfoString = localStorage.getItem("userInfo");
+const userInfo = userInfoString ? JSON.parse(userInfoString) : defaultUserInfo;
 
 export const InvoicePDF = ({ invoiceData }: InvoiceFormProps) => (
   <Document>
     <Page size="A4">
       <View style={styles.header}>
         <View style={styles.image}>
-          <Image src={"../../public/Group 5.jpg"} />
+          <Image src={"/Group 5.jpg"} />
         </View>
         <View>
           <Text style={styles.text}>
-            <Text style={styles.bold}>Adresse:</Text>{" "}
+            <Text style={styles.bold}>Adresse:</Text> {userInfo.address}
           </Text>
           <Text style={styles.text}>
-            <Text style={styles.bold}>Tél:</Text>{" "}
+            <Text style={styles.bold}>Tél:</Text> +216 {userInfo.phoneNumber}
           </Text>
           <Text style={styles.text}>
-            <Text style={styles.bold}>Email:</Text>{" "}
+            <Text style={styles.bold}>Email:</Text> {userInfo.email}
           </Text>
           <Text style={styles.text}>
-            <Text style={styles.bold}>Code TVA:</Text>{" "}
+            <Text style={styles.bold}>Code TVA:</Text> {userInfo.mf}
           </Text>
           <Text style={styles.text}>
-            <Text style={styles.bold}></Text>
+            <Text style={styles.bold}>RIB:</Text> {userInfo.rib}
           </Text>
         </View>
       </View>
@@ -135,7 +138,7 @@ export const InvoicePDF = ({ invoiceData }: InvoiceFormProps) => (
               <TD style={styles.tableRow}>Date</TD>
               <TD style={styles.tableRow}>Client</TD>
             </TH>
-            <TR>
+            <TR style={{ fontWeight: "bold" }}>
               <TD style={styles.tableRow}>00{invoiceData.invoiceNumber}</TD>
               <TD style={styles.tableRow}>{invoiceData.date}</TD>
               <TD style={styles.tableRow}>{invoiceData.clientName}</TD>
@@ -183,7 +186,14 @@ export const InvoicePDF = ({ invoiceData }: InvoiceFormProps) => (
             <TD style={styles.productTableRow}>{invoiceData.quantity}</TD>
             <TD style={styles.productTableRow}>{invoiceData.puht}</TD>
             <TD style={styles.productTableRow}>{invoiceData.tva}</TD>
-            <TD style={{ flexGrow: "0.5", fontSize: "9px", padding: "5px" }}>
+            <TD
+              style={{
+                flexGrow: "0.5",
+                fontSize: "9px",
+                padding: "5px",
+                fontWeight: "bold",
+              }}
+            >
               {invoiceData.ptht}
             </TD>
           </TR>
@@ -199,8 +209,15 @@ export const InvoicePDF = ({ invoiceData }: InvoiceFormProps) => (
             <TD style={{ flexGrow: "2", fontSize: "9px", padding: "5px" }}>
               Nombre Total des articles: 1
             </TD>
-            <TD style={{ flexGrow: "1", fontSize: "9px", padding: "5px" }}>
-              Nombre Total des articles: 1
+            <TD
+              style={{
+                flexGrow: "1",
+                fontSize: "9px",
+                padding: "5px",
+                fontWeight: "bold",
+              }}
+            >
+              Total: {invoiceData.ptht}
             </TD>
           </TR>
         </Table>
@@ -213,7 +230,9 @@ export const InvoicePDF = ({ invoiceData }: InvoiceFormProps) => (
             <TD style={styles.tableRow}>Montant TVA</TD>
           </TH>
           <TR>
-            <TD style={styles.tableRow}>{invoiceData.base}</TD>
+            <TD style={{ fontSize: "7px", padding: "5px", fontWeight: "bold" }}>
+              {invoiceData.base}
+            </TD>
             <TD style={styles.tableRow}>{invoiceData.tva}</TD>
             <TD style={styles.tableRow}>{invoiceData.tvaAmount}</TD>
           </TR>
@@ -244,13 +263,17 @@ export const InvoicePDF = ({ invoiceData }: InvoiceFormProps) => (
                 fontSize: "9px",
                 padding: "5px",
                 backgroundColor: "white",
+                color: "blue",
               }}
             >
               {invoiceData.total}
             </TD>
           </TH>
           <Text style={styles.text}>
-            Arrêtée la présente à la somme de: {invoiceData.totalAsText}
+            Arrêtée la présente à la somme de:{" "}
+            <Text style={{ fontWeight: "bold" }}>
+              {invoiceData.totalAsText}
+            </Text>
           </Text>
         </Table>
       </View>
