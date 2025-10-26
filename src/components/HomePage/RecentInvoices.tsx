@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 
 const RecentInvoices = () => {
   const [invoices] = useState(() => {
@@ -14,25 +15,32 @@ const RecentInvoices = () => {
           className="bg-[#0B132B] text-xs sm:text-lg rounded-md p-2 cursor-pointer"
           key={`${invoice.clientName}${i}`}
         >
-          <header>
-            <ul className="flex flex-row justify-between sm:py-2 sm:px-5 px-2">
-              <li className="text-[#8EC78C]">
-                00{invoices.indexOf(invoice) + 1}
-              </li>
-              <li className="text-white">{invoice.clientName}</li>
-              <li className="text-white">{invoice.address}</li>
-              <li className="text-white">{invoice.date}</li>
-            </ul>
-          </header>
-          <hr className="text-[#8EC78C]/50 mx-10 my-2" />
-          <main className="px-4">
-            <section>
-              <ul className="text-white text-center text-md my-2">
-                <li>{invoice.productName}</li>
+          <Link
+            to={`/invoices/${invoice.invoiceNumber}`}
+            key={`${invoice.clientName}${i}`}
+          >
+            <header>
+              <ul className="flex flex-row justify-between sm:py-2 sm:px-5 px-2">
+                <li className="text-[#8EC78C]">
+                  00{invoices.indexOf(invoice) + 1}
+                </li>
+                <li className="text-white">{invoice.clientName}</li>
+                <li className="text-white">{invoice.address}</li>
+                <li className="text-white">{invoice.date}</li>
               </ul>
-            </section>
-            <p className="text-md text-right text-white">{invoice.total} DT</p>
-          </main>
+            </header>
+            <hr className="text-[#8EC78C]/50 mx-10 my-2" />
+            <main className="px-4">
+              <section>
+                <ul className="text-white text-center text-md my-2">
+                  <li>{invoice.productName}</li>
+                </ul>
+              </section>
+              <p className="text-md text-right text-white">
+                {invoice.total} DT
+              </p>
+            </main>
+          </Link>
         </div>
       );
     });
