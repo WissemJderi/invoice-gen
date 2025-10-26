@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { inputs } from "./data/inputs";
 import PDFHolder from "../PDFHolder";
 const InvoiceInput = () => {
-  const [showPDF, setShowPDF] = useState(true);
+  const [showPDF, setShowPDF] = useState(false);
   const [invoices, setInvoices] = useState(() => {
     const stored = localStorage.getItem("invoices");
     return stored ? JSON.parse(stored) : [];

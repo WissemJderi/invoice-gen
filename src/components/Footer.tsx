@@ -1,24 +1,31 @@
 import { links } from "./data/footerLinks";
+import { motion } from "motion/react";
 
 const Footer = () => {
   const iconsStyle = "cursor-pointer";
   const linksList = links.map((link) => {
     return (
-      <a
+      <motion.a
         href={link.href} // try it without
         target="_blank"
         rel="noopener noreferrer"
         className={iconsStyle}
         key={link.href}
+        whileHover={{
+          scale: 1.3,
+          rotate: 360,
+          transition: { duration: 0.5 },
+        }}
+        whileTap={{ scale: 0.9 }}
       >
         {link.icon}
-      </a>
+      </motion.a>
     );
   });
   const currentYear = new Date().getFullYear();
   return (
     <div className="mx-3 my-10 sm:mx-90 sm:mt-20 border-t-2 border-black/40 p-2">
-      <h2 className="font-light text-xl text-white text-center">
+      <h2 className="font-light text-2xl text-white text-center">
         InvoiceGen <span className="text-gray-400 text-sm">v1.0.0</span>
       </h2>
       <p className="text-gray-300 text-xs mx-5 my-2 text-center">

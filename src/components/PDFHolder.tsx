@@ -4,7 +4,7 @@ import { InvoicePDF } from "./PDF";
 
 import { Buffer } from "buffer";
 
-globalThis.Buffer = Buffer;
+(globalThis as any).Buffer = Buffer;
 
 interface InvoiceFormProps {
   invoiceData: Record<string, string | number>;
