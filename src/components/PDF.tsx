@@ -256,6 +256,22 @@ export const InvoicePDF = ({ invoiceData }: InvoiceFormProps) => (
           </TR>
         </Table>
         <Table style={{ gap: "10px" }}>
+          {invoiceData.discount ? (
+            <TR>
+              <TD style={styles.tableLeftRow}>Remise Excep.</TD>
+              <TD
+                style={{
+                  fontSize: "9px",
+                  padding: "5px",
+                  backgroundColor: "white",
+                  color: "blue",
+                  fontWeight: "bold",
+                }}
+              >
+                {invoiceData.discount}
+              </TD>
+            </TR>
+          ) : null}
           <TH style={styles.tableHeader}>
             <TD style={styles.tableRow}>Net à payer</TD>
             <TD
