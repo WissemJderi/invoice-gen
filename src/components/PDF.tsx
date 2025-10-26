@@ -8,6 +8,7 @@ import {
 } from "@react-pdf/renderer";
 import { Table, TR, TH, TD } from "@ag-media/react-pdf-table";
 import { defaultUserInfo } from "./data/defaultUserInfo";
+import { formatPhoneNumber } from "./Settings/utils";
 
 const styles = StyleSheet.create({
   page: {
@@ -107,7 +108,8 @@ export const InvoicePDF = ({ invoiceData }: InvoiceFormProps) => (
             <Text style={styles.bold}>Adresse:</Text> {userInfo.address}
           </Text>
           <Text style={styles.text}>
-            <Text style={styles.bold}>Tél:</Text> +216 {userInfo.phoneNumber}
+            <Text style={styles.bold}>Tél:</Text> +216{" "}
+            {formatPhoneNumber(userInfo.phoneNumber)}
           </Text>
           <Text style={styles.text}>
             <Text style={styles.bold}>Email:</Text> {userInfo.email}
