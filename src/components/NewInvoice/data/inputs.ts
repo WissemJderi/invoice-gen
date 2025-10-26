@@ -62,6 +62,7 @@ export const inputs: Row[] = [
       { inputName: "TVA Amount", id: "tvaAmount", type: "number" },
       { inputName: "Timbre", id: "timbre", type: "number" },
       { inputName: "FODEC", id: "fodec", type: "number" },
+      { inputName: "Discount", id: "discount", type: "number" },
     ],
   },
   {

@@ -26,6 +26,7 @@ const InvoiceInput = () => {
     tvaAmount: 0,
     timbre: 1,
     fodec: 0,
+    discount: 0,
     total: 0,
     totalAsText: "",
   };
@@ -37,11 +38,12 @@ const InvoiceInput = () => {
     const tva = Number(invoiceData.tva) * 0.01;
     const timbre = Number(invoiceData.timbre);
     const fodec = Number(invoiceData.fodec);
+    const discount = Number(invoiceData.discount);
 
     const ptht = quantity * puht;
     const base = quantity * puht;
-    const tvaAmount = quantity * puht * tva;
-    const total = quantity * puht * tva + quantity * puht + timbre + fodec;
+    const tvaAmount = base * tva;
+    const total = base + tvaAmount + timbre + fodec - discount;
 
     if (invoiceData.ptht !== ptht || invoiceData.total !== total) {
       setInvoiceData((prev) => ({
@@ -58,6 +60,7 @@ const InvoiceInput = () => {
     invoiceData.tva,
     invoiceData.timbre,
     invoiceData.fodec,
+    invoiceData.discount,
   ]);
   useEffect(() => {
     localStorage.setItem("invoices", JSON.stringify(invoices));
@@ -98,6 +101,8 @@ const InvoiceInput = () => {
             value={invoiceData[child.id]}
             className={`${inputStyle}`}
             onChange={(e) => {
+              console.log(invoiceData);
+
               setInvoiceData((prevState) => ({
                 ...prevState,
                 [child.id]: e.target.value,
