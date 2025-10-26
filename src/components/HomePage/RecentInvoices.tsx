@@ -12,7 +12,7 @@ const RecentInvoices = () => {
     .map((invoice: any, i: number) => {
       return (
         <div
-          className="bg-[#0B132B] text-xs sm:text-lg rounded-md p-2 cursor-pointer"
+          className="bg-[#0B132B] text-xs sm:text-lg rounded-md p-2 cursor-pointer hover:bg-[#060B1A] transition-all duration-500"
           key={`${invoice.clientName}${i}`}
         >
           <Link to={`/invoices/${invoice.invoiceNumber}`}>

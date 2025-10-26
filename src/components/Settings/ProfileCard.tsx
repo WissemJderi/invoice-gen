@@ -1,4 +1,5 @@
 import { defaultUserInfo } from "../data/defaultUserInfo";
+import { formatPhoneNumber } from "./utils";
 
 const ProfileCard = () => {
   const userInfoString = localStorage.getItem("userInfo");
@@ -20,7 +21,7 @@ const ProfileCard = () => {
           <b>Email Address:</b> {userInfo.email}
         </p>
         <p>
-          <b>Phone Number:</b> {userInfo.phoneNumber}
+          <b>Phone Number:</b> {formatPhoneNumber(userInfo.phoneNumber)}
         </p>
         <p>
           <b>Address: </b>

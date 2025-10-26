@@ -20,7 +20,7 @@ const History = () => {
               to={`/invoices/${invoice.invoiceNumber}`}
               key={`${invoice.clientName}${i}`}
             >
-              <div className="bg-[#0B132B] rounded-md p-2 my-2 text-sm sm:text-lg cursor-pointer">
+              <div className="bg-[#0B132B] rounded-md p-2 my-2 text-sm sm:text-lg cursor-pointer hover:bg-[#060B1A] transition-all duration-500">
                 <header>
                   <ul className="flex flex-row justify-between p-2">
                     <li className="text-[#8EC78C]">
