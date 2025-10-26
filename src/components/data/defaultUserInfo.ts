@@ -6,4 +6,5 @@ export const defaultUserInfo = {
   city: "Your City, Country",
   mf: "Your Tax ID",
   rib: "Your RIB ID",
+  bankName: "Your Bank Name",
 };

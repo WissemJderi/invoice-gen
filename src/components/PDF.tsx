@@ -116,7 +116,9 @@ export const InvoicePDF = ({ invoiceData }: InvoiceFormProps) => (
             <Text style={styles.bold}>Code TVA:</Text> {userInfo.mf}
           </Text>
           <Text style={styles.text}>
-            <Text style={styles.bold}>RIB:</Text> {userInfo.rib}
+            <Text style={styles.bold}>
+              RIB {userInfo.bankName}: {userInfo.rib}
+            </Text>
           </Text>
         </View>
       </View>

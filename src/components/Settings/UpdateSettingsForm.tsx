@@ -87,6 +87,15 @@ const UpdateSettingsForm = () => {
           />
         </div>
         <div className="flex flex-col">
+          <p className="pl-2 font-semibold">Bank Name:</p>
+          <input
+            type="text"
+            value={userInfo.bankName}
+            onChange={(e) => handleChange("bankName", e.target.value)}
+            className={inputStyle}
+          />
+        </div>
+        <div className="flex flex-col">
           <p className="pl-2 font-semibold">RIB:</p>
           <input
             type="text"

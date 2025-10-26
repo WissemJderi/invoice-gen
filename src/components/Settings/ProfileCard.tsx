@@ -33,6 +33,9 @@ const ProfileCard = () => {
           <b>MF:</b> {userInfo.mf}
         </p>
         <p>
+          <b>Bank Name:</b> {userInfo.bankName}
+        </p>
+        <p>
           <b>RIB:</b> {userInfo.rib}
         </p>
       </section>
