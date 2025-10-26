@@ -24,7 +24,7 @@ const Footer = () => {
   });
   const currentYear = new Date().getFullYear();
   return (
-    <div className="mx-3 my-10 sm:mx-90 sm:mt-20 border-t-2 border-black/40 p-2">
+    <div className="xl:mx-60 mx-3 my-10  sm:mt-20 border-t-2 border-black/40 p-2">
       <h2 className="font-light text-2xl text-white text-center">
         InvoiceGen <span className="text-gray-400 text-sm">v1.0.0</span>
       </h2>

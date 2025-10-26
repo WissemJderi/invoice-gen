@@ -108,7 +108,7 @@ const UpdateSettingsForm = () => {
 
       <button
         onClick={handleSave}
-        className="bg-[#8EC78C] rounded-md sm:mx-30 sm:my-2 text-md my-3 mx-6 p-2 cursor-pointer"
+        className="bg-[#8EC78C] rounded-md sm:my-2 text-lg my-3 mx-6 p-2 cursor-pointer"
       >
         Save Changes
       </button>

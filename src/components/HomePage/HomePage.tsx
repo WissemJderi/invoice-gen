@@ -10,7 +10,7 @@ const HomePage = () => {
       exit={{ opacity: 0 }}
       id={"homepage"}
       transition={{ duration: 0.4, ease: "easeIn" }}
-      className="sm:mx-60 sm:my-10 sm:py-5"
+      className="xl:mx-60 mx-2"
     >
       <Greeting />
       <RecentInvoices />

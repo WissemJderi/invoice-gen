@@ -136,7 +136,7 @@ const InvoiceInput = () => {
     return null;
   });
   return (
-    <div className="bg-[#1C2541] rounded-2xl  flex flex-col gap-2 text-white sm:mx-60 sm:my-10 sm:py-5 sm:px-40 py-10 mx-3 p-4">
+    <div className="bg-[#1C2541] rounded-2xl flex flex-col gap-2 text-white  sm:my-10 sm:py-5 sm:px-40 py-10  p-4 xl:mx-60 mx-2">
       <p className="text-xl">Invoice Number: {invoiceData.invoiceNumber}</p>
       {inputsList}
       <button
