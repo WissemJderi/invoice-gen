@@ -39,3 +39,9 @@ export function currentYearRevenue(invoices: {}[]) {
   });
   return total;
 }
+export function formatPrice(price: number): string {
+  return `${price.toLocaleString("fr-TN", {
+    minimumFractionDigits: 3,
+    maximumFractionDigits: 3,
+  })} TND`;
+}

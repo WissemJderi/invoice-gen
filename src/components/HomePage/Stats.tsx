@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { currentMonthRevenue, currentYearRevenue } from "./utils";
+import { currentMonthRevenue, currentYearRevenue, formatPrice } from "./utils";
 
 const Stats = () => {
   const [invoices] = useState(() => {
@@ -22,11 +22,11 @@ const Stats = () => {
         <div id="Monthly revenue">
           <div className="flex flex-row justify-between text-white">
             <p> This month's revenue:</p>
-            <p>{currentMonthRevenue(invoices)} DT</p>
+            <p>{formatPrice(currentMonthRevenue(invoices))}</p>
           </div>
           <div className="flex flex-row justify-between text-white">
             <p>This year's revenue: </p>
-            <p>{currentYearRevenue(invoices)} DT</p>
+            <p>{formatPrice(currentYearRevenue(invoices))}</p>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { formatPrice } from "./utils";
 
 const RecentInvoices = () => {
   const [invoices] = useState(() => {
@@ -34,7 +35,7 @@ const RecentInvoices = () => {
                 </ul>
               </section>
               <p className="text-md text-right text-white">
-                {invoice.total} DT
+                {formatPrice(invoice.total)}
               </p>
             </main>
           </Link>
