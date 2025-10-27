@@ -96,12 +96,13 @@ interface InvoiceFormProps {
 const userInfoString = localStorage.getItem("userInfo");
 const userInfo = userInfoString ? JSON.parse(userInfoString) : defaultUserInfo;
 
+const savedPic = localStorage.getItem("profilePic");
 export const InvoicePDF = ({ invoiceData }: InvoiceFormProps) => (
   <Document>
     <Page size="A4">
       <View style={styles.header}>
         <View style={styles.image}>
-          <Image src={"/Group 5.jpg"} />
+          <Image src={savedPic} />
         </View>
         <View>
           <Text style={styles.text}>

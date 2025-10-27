@@ -1,4 +1,5 @@
 import { defaultUserInfo } from "../data/defaultUserInfo";
+import ProfilePic from "./ProfilePic";
 import { formatPhoneNumber } from "./utils";
 
 const ProfileCard = () => {
@@ -12,7 +13,7 @@ const ProfileCard = () => {
   }
   return (
     <div className="custom-shadow bg-[#0B132B] rounded-2xl flex flex-col items-center justify-center gap-4 p-2 py-5 m-5">
-      <img src="/ppsicon.png" />
+      <ProfilePic />
       <section className="flex flex-col text-sm sm:text-lg">
         <p>
           <b>Name:</b> {userInfo.name}
