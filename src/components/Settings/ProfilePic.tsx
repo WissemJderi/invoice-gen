@@ -54,7 +54,7 @@ const ProfilePic = () => {
         )}
       </div>
 
-      <label className="flex flex-col items-center px-2 py-1 bg-blue-600 text-white text-sm font-semibold rounded-md cursor-pointer hover:bg-blue-700 transition">
+      <label className="flex flex-col items-center px-2 py-1 bg-[#8EC78C] text-white text-sm font-semibold rounded-md cursor-pointer hover:brightness-110 transition-all duration-200">
         {profilePic ? "Change PNG" : "Upload PNG"}
         <input
           type="file"
