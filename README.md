@@ -1,73 +1,63 @@
-# React + TypeScript + Vite
+# invoiceGen
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple invoice generator built with React and TypeScript. Create professional invoices, download them as PDFs, and keep track of your billing history.
 
-Currently, two official plugins are available:
+## What it does
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This app lets you generate invoices with automatic tax calculations and discount support. Everything is stored locally in your browser, so no backend needed. You can customize invoices with your own logo, manage client details, and download everything as a PDF when you're done.
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Create and manage invoices with line items, quantities, and pricing
+- Upload your own logo for branding
+- Automatic tax calculation
+- Apply discounts to invoices
+- Download invoices as PDF files (using react-pdf)
+- View recent invoices on the homepage
+- Full invoice history
+- User settings page for account info
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React + TypeScript
+- React Router for navigation
+- Tailwind CSS for styling
+- react-pdf for PDF generation
+- LocalStorage for data persistence
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Clone the repo and install dependencies:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/WissemJderi/invoiceGen.git
+cd invoiceGen
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Run the dev server:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+The app should open at `http://localhost:5173` (or whatever port Vite assigns).
+
+## Usage
+
+1. Head to the invoice creation page
+2. Fill in your client details and line items
+3. The app will automatically calculate totals with tax
+4. Add discounts if needed
+5. Download your invoice as a PDF
+6. Save the invoice
+
+All your invoices are saved locally, so you can come back and view them anytime from the history page.
+
+## Why I built this
+
+Wanted to learn more about PDF generation in React and build something actually useful. Plus, it's a good excuse to practice TypeScript and work with forms/state management.
+
+## License
+
+MIT
