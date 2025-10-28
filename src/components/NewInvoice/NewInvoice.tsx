@@ -7,7 +7,7 @@ const NewInvoice = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       key={"newInvoice"}
-      transition={{ duration: 0.3, ease: "easeIn" }}
+      transition={{ duration: 0.4, ease: "easeIn" }}
     >
       <InvoiceInput />
     </motion.div>

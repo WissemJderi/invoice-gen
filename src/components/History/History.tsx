@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 import { months, sortInvoices } from "./utils";
 import { motion } from "motion/react";
+import { formatPrice } from "../HomePage/utils";
 
 const History = () => {
   const [invoices] = useState(() => {
@@ -14,34 +15,46 @@ const History = () => {
     return (
       <section key={monthIndex}>
         <h2 className="text-xl font-bold">{months[monthIndex]}:</h2>{" "}
-        <ul>
-          {monthInvoices.map((invoice: any, i) => (
-            <Link
-              to={`/invoices/${invoice.invoiceNumber}`}
-              key={`${invoice.clientName}${i}`}
-            >
-              <div className="bg-[#0B132B] rounded-md p-2 my-2 text-sm sm:text-lg cursor-pointer hover:bg-[#060B1A] transition-all duration-500">
-                <header>
-                  <ul className="flex flex-row justify-between p-2">
-                    <li className="text-[#8EC78C]">
-                      00{invoices.indexOf(invoice) + 1}
-                    </li>
-                    <li className="text-white">{invoice.clientName}</li>
-                    <li className="text-white">{invoice.address}</li>
-                    <li className="text-white">{invoice.date}</li>
-                  </ul>
-                </header>
-                <main className="px-4">
-                  <section>
-                    <ul className="text-white text-center my-2">
-                      <li>{invoice.productName}</li>
-                    </ul>
-                  </section>
-                  <p className="text-right text-white">{invoice.total} DT</p>
-                </main>
-              </div>
-            </Link>
-          ))}
+        <ul className="mx-3 flex flex-col gap-5 rounded-2xl bg-[#1C2541] p-8">
+          {monthInvoices.map((invoice: any, index) => {
+            const displayNumber = invoices.length - index;
+            return (
+              <motion.div
+                key={`${invoice.invoiceNumber}-${index}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.4 }}
+                className="group"
+              >
+                <Link
+                  to={`/invoices/${invoice.invoiceNumber}`}
+                  className="block rounded-md bg-[#0B132B] p-4 transition-all duration-300 hover:bg-[#060B1A] hover:shadow-lg"
+                >
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-3 text-xs sm:px-2 sm:text-base">
+                    <span className="font-mono text-[#8EC78C]">
+                      #{String(displayNumber).padStart(3, "0")}
+                    </span>
+                    <span className="font-medium text-white">
+                      {invoice.clientName}
+                    </span>
+                    <span className="text-white/70">{invoice.address}</span>
+                    <span className="text-white/70">{invoice.date}</span>
+                  </div>
+
+                  <hr className="my-3 border-[#8EC78C]/20" />
+
+                  <div className="flex items-center justify-between px-2">
+                    <p className="text-sm text-white/80 sm:text-base">
+                      {invoice.productName}
+                    </p>
+                    <p className="text-base font-semibold text-white sm:text-lg">
+                      {formatPrice(invoice.total)}
+                    </p>
+                  </div>
+                </Link>
+              </motion.div>
+            );
+          })}
         </ul>
       </section>
     );
@@ -54,7 +67,7 @@ const History = () => {
       exit={{ opacity: 0 }}
       id={"history"}
       transition={{ duration: 0.4, ease: "easeIn" }}
-      className="bg-[#1C2541] rounded-2xl  flex flex-col gap-2 text-white  sm:my-10 sm:py-5 sm:px-40 py-10 p-4 xl:mx-60 mx-2"
+      className="bg-[#1C2541] rounded-2xl  flex flex-col gap-2 text-white  sm:my-10 sm:py-5 sm:px-40 py-10  p-4 xl:mx-60 mx-2"
     >
       {" "}
       <p className="text-gray-300 sm:text-lg text-sm text-center">
