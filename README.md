@@ -1,5 +1,7 @@
 # invoiceGen
 
+🔗 [Live Demo](https://wissem-jderi-invoice-gen.vercel.app/)
+
 A simple invoice generator built with React and TypeScript. Create professional invoices, download them as PDFs, and keep track of your billing history.
 
 ## What it does
