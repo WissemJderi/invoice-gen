@@ -6,6 +6,9 @@ const greetings: string[] = [
 ];
 
 export function greeting(currentHour: number): string {
+  if (currentHour <= 0 || currentHour >= 24) {
+    throw new Error("Invalid Hour");
+  }
   if (currentHour >= 5 && currentHour < 12) {
     return greetings[0];
   } else if (currentHour >= 12 && currentHour < 17) {
