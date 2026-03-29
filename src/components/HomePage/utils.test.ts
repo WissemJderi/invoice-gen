@@ -43,33 +43,18 @@ describe("Testing the getMonthFromInvoice with valid data", () => {
 });
 
 describe("Invalid month handling", () => {
-  test("Function throw error when the number has less than 2 digits", () => {
-    expect(() => getMonthFromInvoice({ date: "10-6-06" })).toThrow(
-      "Invalid Month format",
-    );
-  });
-
-  test("Function throw error when the number has more than 2 digits", () => {
-    expect(() => getMonthFromInvoice({ date: "2025-125-06" })).toThrow(
-      "Invalid Month format",
-    );
-  });
-
-  test("Function throw error when the given date has a non numeric year", () => {
-    expect(() => getMonthFromInvoice({ date: "2025-aa-06" })).toThrow(
-      "Invalid Month format",
-    );
-  });
-
-  test("Function throw error when the given date is less than 1", () => {
-    expect(() => getMonthFromInvoice({ date: "2025-00-06" })).toThrow(
-      "Invalid Month range",
-    );
-  });
-
-  test("Function throw error when the given date is less greater than 12", () => {
-    expect(() => getMonthFromInvoice({ date: "2025-13-06" })).toThrow(
-      "Invalid Month range",
-    );
-  });
+  test.for([
+    ["has less than 2 digits", { date: "2025-6-06" }, "Invalid Month format"],
+    ["has more than 2 digits", { date: "2025-006-06" }, "Invalid Month format"],
+    ["is not numeric", { date: "2025-aa-06" }, "Invalid Month format"],
+    ["is less than 1", { date: "2025-00-06" }, "Invalid Month range"],
+    ["is greater than 12", { date: "2025-13-06" }, "Invalid Month range"],
+  ])(
+    "Function throw error when the given month %s",
+    ([_text, date, expected]) => {
+      expect(() => getMonthFromInvoice(date as { date: string })).toThrow(
+        expected as string,
+      );
+    },
+  );
 });
