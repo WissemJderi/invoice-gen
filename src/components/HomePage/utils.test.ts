@@ -4,6 +4,7 @@ import {
   getYearFromInvoice,
   getMonthFromInvoice,
   formatPrice,
+  currentYearRevenue,
 } from "./utils.ts";
 
 describe("Testing the getYearFromInvoice with valid data", () => {
@@ -86,5 +87,56 @@ describe("formatPrice ensures 3‑decimal TND output", () => {
 
   test("Test with negative number must give an error", () => {
     expect(() => formatPrice(-10)).toThrow("Price cannot be negative");
+  });
+});
+
+describe("currentYearRevenue calculate the total income in the current year", () => {
+  test("Handling an empty invoice list", () => {
+    expect(currentYearRevenue([])).toBe(0);
+  });
+
+  test("Handling an invoice with 0 total", () => {
+    expect(currentYearRevenue([{ date: "2026-03-29", total: 0 }])).toBe(0);
+  });
+
+  test("Handling a list of invoices with 0 total", () => {
+    const invoices = [
+      { date: "2026-03-29", total: 0 },
+      { date: "2026-04-29", total: 0 },
+    ];
+    expect(currentYearRevenue(invoices)).toBe(0);
+  });
+
+  test("Ignores invoices from other years", () => {
+    const invoices = [
+      { date: "2025-03-29", total: 0 },
+      { date: "2024-04-29", total: 0 },
+    ];
+    expect(currentYearRevenue(invoices)).toBe(0);
+  });
+
+  test("Sums invoices only from current year", () => {
+    const invoices = [
+      { date: "2026-03-29", total: 1000 },
+      { date: "2026-04-29", total: 999 },
+    ];
+    expect(currentYearRevenue(invoices)).toBe(1000 + 999);
+  });
+
+  test("Sums invoices with mixed years", () => {
+    const invoices = [
+      { date: "2026-03-29", total: 1000 },
+      { date: "2026-03-29", total: 1000 },
+      { date: "2025-04-29", total: 999 },
+    ];
+    expect(currentYearRevenue(invoices)).toBe(1000 + 1000);
+  });
+
+  test("Handles very large totals", () => {
+    const invoices = [
+      { date: "2026-03-29", total: 1_000_000 },
+      { date: "2026-04-29", total: 2_000_000 },
+    ];
+    expect(currentYearRevenue(invoices)).toBe(3_000_000);
   });
 });
