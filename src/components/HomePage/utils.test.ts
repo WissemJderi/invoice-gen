@@ -1,6 +1,10 @@
 import { describe, expect, test } from "vitest";
 
-import { getYearFromInvoice, getMonthFromInvoice } from "./utils.ts";
+import {
+  getYearFromInvoice,
+  getMonthFromInvoice,
+  formatPrice,
+} from "./utils.ts";
 
 describe("Testing the getYearFromInvoice with valid data", () => {
   test("Test with 2025-06-06", () => {
@@ -57,4 +61,30 @@ describe("Invalid month handling", () => {
       );
     },
   );
+});
+
+describe("formatPrice ensures 3‑decimal TND output", () => {
+  test("Test with 0", () => {
+    expect(formatPrice(0)).toBe("0,000 TND");
+  });
+
+  test("Test with 10", () => {
+    expect(formatPrice(10)).toBe("10,000 TND");
+  });
+
+  test("Test with 10.1", () => {
+    expect(formatPrice(10.1)).toBe("10,100 TND");
+  });
+
+  test("Test with 10.1234", () => {
+    expect(formatPrice(10.1234)).toBe("10,123 TND");
+  });
+
+  test("Test with 100000123.1234", () => {
+    expect(formatPrice(100000123.1234)).toBe("100 000 123,123 TND");
+  });
+
+  test("Test with negative number must give an error", () => {
+    expect(() => formatPrice(-10)).toThrow("Price cannot be negative");
+  });
 });

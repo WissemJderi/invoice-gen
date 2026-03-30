@@ -53,7 +53,14 @@ export function currentYearRevenue(invoices: {}[]) {
   });
   return total;
 }
+
+// converts the number into a string formatted according to the French (Tunisia) locale rules
+// 1234.5 -> "1 234,500 TND"
+// 99 -> "99,000 TND"
 export function formatPrice(price: number): string {
+  if (price < 0) {
+    throw new Error("Price cannot be negative");
+  }
   return `${price.toLocaleString("fr-TN", {
     minimumFractionDigits: 3,
     maximumFractionDigits: 3,
